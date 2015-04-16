@@ -14,6 +14,7 @@
 <body>
 <!-- BEGIN  out-->
 <div class="out">
+	{% block header %}
 	<div class="header">
 		<div class="header__top">
 			<div class="l_layout">
@@ -34,12 +35,12 @@
 		</div>
 		<div class="header__bottom">
 			<div class="l_layout">
-				<a href="#" class="logo">
+				<a href="{{ url_for('public.home') }}" class="logo">
 					<img src="{{ url_for('static', filename='img/icons/logo.png') }}" alt="">
 					<h1>Made in Ukraine</h1>
 				</a>
 				<ul class="header__menu">
-					<li class="header__menu_item "><a class="has_sub" href="#">Каталог</a>
+					<li class="header__menu_item "><a class="has_sub" href="{{ url_for('public.catalog') }}">Каталог</a>
 						<ul class="submenu">
 							<div class="l_layout">
 								<li><a href="#" class="submenu__link1">Одяг</a></li>
@@ -57,9 +58,9 @@
 							</div>
 						</ul>
 					</li>
-					<li class="header__menu_item"><a href="#">новини</a></li>
-					<li class="header__menu_item"><a href="#">блог</a></li>
-					<li class="header__menu_item"><a href="#">про проект</a></li>
+					<li class="header__menu_item"><a href="{{ url_for('public.news') }}">новини</a></li>
+					<li class="header__menu_item"><a href="{{ url_for('public.blog') }}">блог</a></li>
+					<li class="header__menu_item"><a href="{{ url_for('public.about') }}">про проект</a></li>
 				</ul>
 				<div class="header__search">
 					<input type="text" name="" class="header__search-inp">
@@ -68,122 +69,21 @@
 			</div>
 		</div>
 	</div>
-	<div class="baner">
-		<!-- <img src="img/pattern.png" alt=""> -->
-		<div class="baner__content">
-			<div class="baner__content_top">
-				<h2>Купуй Українське</h2>
-				<p><em>інтернет-каталог українських виробників</em></p>
-			</div>
-			<div class="baner__content_bottom">
-				<p>Наразі купувати українські продукти та речі не тільки вигідно, а є вже правилом гарного тону. Українські виробники виробляють майже все: від колготок до танків, від іграшок  до спортивного інвентарю. </p>
-			</div>
-		</div>
-	</div>
+	{% endblock %}
 
-	<div class="main">
-		{% block content %}{% endblock %}
-	</div>
-	
-	<div class="section">
-		<div class="l_layout">
-			<h2 class="section__title">Новини</h2>
-			<div class="section__content">
-				<div class="section__item">
-					<h3>Українські товари для європейських магазинів</h3>
-					<p>З сьогоднішнього дня набирає чинності рішення Ради Європейського Союзу про одностороннього скасування мита на українські товари. Ці преференції будуть діяти тимчасово, до 1 листопада.</p>
-				</div>
-				<div class="section__item">
-					<h3>Українські товари для європейських магазинів</h3>
-					<p>З сьогоднішнього дня набирає чинності рішення Ради Європейського Союзу про одностороннього скасування мита на українські товари. Ці преференції будуть діяти тимчасово, до 1 листопада.</p>
-				</div>
-				<div class="section__item">
-					<h3>Українські товари для європейських магазинів</h3>
-					<p>З сьогоднішнього дня набирає чинності рішення Ради Європейського Союзу про одностороннього скасування мита на українські товари. Ці преференції будуть діяти тимчасово, до 1 листопада.</p>
-				</div>
-				<div class="section__item">
-					<h3>Українські товари для європейських магазинів</h3>
-					<p>З сьогоднішнього дня набирає чинності рішення Ради Європейського Союзу про одностороннього скасування мита на українські товари. Ці преференції будуть діяти тимчасово, до 1 листопада.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="baner subscribe">
-		<h3>Оформити підписку на новини</h3>
-		<div class="line line__yellow"></div>
-		<p>Дізнавайтеся першими про нові товари українського виробника</p>
-		<div class="subscribe__form">
-			<input type="text" name=""  placeholder="Ваше ім'я">
-			<input type="text" name=""  placeholder="Email">
-			<button>Підписатися</button>
-		</div>
-	</div>
-	<div class="socio">
-		<h2 class="section__title">ми в соцмережах</h2>
-		<div class="socio__wrap">
-			<div class="l_layout">
-				<div class="socio__container">
-					<div class="socio__top">
-						<p>Facebook</p>
-						<a href="#">
-							<img src="{{ url_for('static', filename='img/socio_f.png') }}" alt="">
-						</a>
-						<span class="number">1k</span>
-					</div>
-					<div class="socio__bottom">
-						<p><a href="#">123</a> people like <a href="#">Made In Ukraine</a></p>
-					</div>
-				</div>
-				<div class="socio__container">
-					<div class="socio__top">
-						<p>Вконтакте</p>
-						<a href="#">
-							<img src="{{ url_for('static', filename='img/socio_vk.png') }}" alt="">
-						</a>
-						<span class="number">458</span>
-					</div>
-					<div class="socio__bottom">
-						<p>Підписано <a href="#">34 569</a> чоловік</p>
-					</div>
-				</div>
-				<div class="socio__container">
-					<div class="socio__top">
-						<p>Twitter</p>
-						<a href="#">
-							<img src="{{ url_for('static', filename='img/socio_tw.png') }}" alt="">
-						</a>
-						<span class="number">458</span>
-					</div>
-					<div class="socio__bottom">
-						<p><a href="#">34 745</a> follow us </p>
-					</div>
-				</div>
-				<div class="socio__container">
-					<div class="socio__top">
-						<p>instgram</p>
-						<a href="#">
-							<img src="{{ url_for('static', filename='img/socio_inst.png') }}" alt="">
-						</a>
-						<span class="number">458</span>
-					</div>
-					<div class="socio__bottom">
-						<p><a href="#">745</a> follow us </p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	{% block content %}{% endblock %}
+
 </div>
 <!-- END out-->
-
+{% block footer %}
 <div class="footer">
 	<div class="l_layout">
 		<a class="send__mail" href="mailto:admin@hosting.ua"><i></i>Написати нам</a>
 		<ul class="footer__menu">
-			<li><a href="#">про проект</a></li>
-			<li><a href="#">Каталог</a></li>
-			<li><a href="#">Блог</a></li>
-			<li><a href="#">НоВини</a></li>
+			<li><a href="{{ url_for('public.about') }}">про проект</a></li>
+			<li><a href="{{ url_for('public.catalog') }}">Каталог</a></li>
+			<li><a href="{{ url_for('public.blog') }}">Блог</a></li>
+			<li><a href="{{ url_for('public.news') }}">НоВини</a></li>
 		</ul>
 		<div class="social">
 			<a href="#" class="social__vk"></a>
@@ -193,6 +93,6 @@
 	</div>
 	<div class="copy">© Интернет-каталог українських виробників «Купуй українське» 2015</div>
 </div>
-
+{% endblock %}
 </body>
 </html>
