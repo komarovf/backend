@@ -58,3 +58,6 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Db migrations
+db_repository
