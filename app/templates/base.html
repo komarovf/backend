@@ -2,7 +2,7 @@
 <html lang="ua">
 <head>
 	<meta charset="utf-8">
-	<title>main</title>
+	<title>{{ title }}</title>
 	<meta name="viewport" content="initial-scale=1">
 	<!-- <meta name="format-detection" content="telephone=no"> -->
 	<!-- <meta name="viewport" content="width=1200"> -->
@@ -43,23 +43,18 @@
 					<li class="header__menu_item "><a class="has_sub" href="{{ url_for('public.catalog') }}">Каталог</a>
 						<ul class="submenu">
 							<div class="l_layout">
-								<li><a href="#" class="submenu__link1">Одяг</a></li>
-								<li><a href="#" class="submenu__link2">Взуття</a></li>
-								<li><a href="#" class="submenu__link3">Косметика</a></li>
-								<li><a href="#" class="submenu__link4">Засоби гігієни</a></li>
-								<li><a href="#" class="submenu__link5">Посуд</a></li>
-								<li><a href="#" class="submenu__link6">Алкогольні напої</a></li>
-								<li><a href="#" class="submenu__link7">Їжа</a></li>
-								<li><a href="#" class="submenu__link8">Чемодани та сумки</a></li>
-								<li><a href="#" class="submenu__link9">Товари для дітей</a></li>
-								<li><a href="#" class="submenu__link10">Прикраси</a></li>
-								<li><a href="#" class="submenu__link11">Побутова хімія</a></li>
-								<li><a href="#" class="submenu__link12">Різне</a></li>
+							{% for item in menu %}
+								<li>
+									<a href="{{ url_for('public.catalog', category_id=item.id) }}" class="submenu__link{{ item.css_class }}">
+								       {{ item.name }}
+									</a>
+								</li>
+							{% endfor %}
 							</div>
 						</ul>
 					</li>
-					<li class="header__menu_item"><a href="{{ url_for('public.news') }}">новини</a></li>
-					<li class="header__menu_item"><a href="{{ url_for('public.blog') }}">блог</a></li>
+					<li class="header__menu_item"><a href="{{ url_for('public.post', cat='news') }}">новини</a></li>
+					<li class="header__menu_item"><a href="{{ url_for('public.post', cat='blog') }}">блог</a></li>
 					<li class="header__menu_item"><a href="{{ url_for('public.about') }}">про проект</a></li>
 				</ul>
 				<div class="header__search">
@@ -70,8 +65,11 @@
 		</div>
 	</div>
 	{% endblock %}
-
-	{% block content %}{% endblock %}
+	<div class="main">
+		<div class="l_layout">
+			{% block content %}{% endblock content %}
+		</div>
+	</div>
 
 </div>
 <!-- END out-->
@@ -82,8 +80,8 @@
 		<ul class="footer__menu">
 			<li><a href="{{ url_for('public.about') }}">про проект</a></li>
 			<li><a href="{{ url_for('public.catalog') }}">Каталог</a></li>
-			<li><a href="{{ url_for('public.blog') }}">Блог</a></li>
-			<li><a href="{{ url_for('public.news') }}">НоВини</a></li>
+			<li><a href="{{ url_for('public.post', cat='blog') }}">Блог</a></li>
+			<li><a href="{{ url_for('public.post', cat='news') }}">НоВини</a></li>
 		</ul>
 		<div class="social">
 			<a href="#" class="social__vk"></a>
@@ -94,5 +92,13 @@
 	<div class="copy">© Интернет-каталог українських виробників «Купуй українське» 2015</div>
 </div>
 {% endblock %}
+<!-- Alert flash messages :) -->
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	{% for message in messages %}
+	    <script type="text/javascript">alert('{{ message }}');</script>
+	{% endfor %}
+	{% endif %}
+	{% endwith %}
 </body>
 </html>

@@ -5,6 +5,11 @@ _basedir = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = True
 
+PAGINATION = 3
+
+ADV_PATH = os.path.join(_basedir, 'app', 'templates', 'public', 'adv')
+ABOUT_PATH = os.path.join(_basedir, 'app', 'about.txt')
+
 ADMINS = frozenset(['youremail@yourdomain.com'])
 SECRET_KEY = 'This string will be replaced with a proper key in production.'
 
