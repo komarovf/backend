@@ -109,6 +109,8 @@ class NewsView(BlogView):
 class AboutView(BaseView):
 	@expose('/', methods=['GET', 'POST'])
 	def index(self):
+		if not current_user.is_authenticated():
+			return redirect('/admin')
 		with open(ABOUT_PATH, 'r+') as f:
 			about = f.read()
 		form = AboutForm()
