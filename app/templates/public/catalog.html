@@ -1,62 +1,50 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="main">
-	<div class="l_layout">
-		<div class="tree">
-			<a href="#">Головна </a> /
-			<a href="#">Каталог</a> /
-			Сумки та рюкзаки 
-
-			{% if category %}
-				{{category.name}}
-			{% else %}
-				lol
-			{% endif %}
-
-		</div>
+	{% include "public/nav.html" %}
 		<div class="section">
 			<div class="l_col1">
+				
+			{% block submenu %}
 				<div class="nav">
-					<h2>Чемодани та сумки</h2>
-					<ul >
-						<li><a href="#">Сумки</a></li>
-						<li><a href="#">Сумочки та клатчі</a></li>
-						<li class="is-active"><a href="#">Рюкзаки</a></li>
-						<li><a href="#">Складні сумки</a></li>
-						<li><a href="#">Для мандрувань та спорта</a></li>
-						<li><a href="#">Сумки для ноутбука</a></li>
+					<h2>{{ category.name }}</h2>
+					<ul>
+					{% for item in category.sub_categories %}
+						<li {% if sub.id == item.id %}class="is-active"{% endif %}>
+							<a href="{{ url_for('public.catalog', category_id=category.id, sub_id=item.id) }}">
+								{{ item.name }}
+							</a>
+						</li>
+					{% endfor %}
 					</ul>
 				</div>
+			{% endblock submenu %}
+
+			{% block filter %}
+				{% if manufacturers %}
 				<div class="filter">
 					<div class="poll__form">
 						<h3>Виробник</h3>
 						<input class="btn" type="submit" value="ЗКИНУТИ"><i class="close"></i>
+						{% for m in manufacturers %}
 						<div class="radio-wrap">
 							<label class="radio">
-								<input type="radio" name="name" checked>
-								<span>Derby</span>
+								<input type="radio" name="filter">
+								<span>{{ m }}</span>
 							</label>
 						</div>
-						<div class="radio-wrap">
-							<label class="radio">
-								<input type="radio" name="name">
-								<span>VIF</span>
-							</label>
-						</div>
-						<div class="radio-wrap">
-							<label class="radio">
-								<input type="radio" name="name">
-								<span>Авторські сумки від Tanya Klyova</span>
-							</label>
-						</div>
+						{% endfor %}
+					</div>
 				</div>
-			</div>
-		</div>
+				{% endif %}
+			{% endblock filter %}
 
+			</div>
 			<div class="l_col2">
+
+			{% block sorting %}
 				<div class="sort">
 					<div class="sort__all">
-						<p>Всього <a href="#">1025 </a> товарів </p>
+						<p>Всього <a href="#">{{ count }}</a> товарів</p>
 					</div>
 					<div class="sort__cattegory">
 						<p>Сортувати за:</p>
@@ -65,115 +53,40 @@
 						</a>
 					</div>
 				</div>
+			{% endblock sorting %}
+
+			{% block advs %}
 				<div class="point">
-					<a href="#" class="point1">
-						<div class="point1__wrap">
-							<img src="img/bag.png" alt="">
-							<h3>Готумоєсь до школи!</h3>
-							<p>Шкільний рюкзак Derby <span>«Я люблю Україну»</span></p>
-						</div>
-						<span class="point__price">250 грн.</span>
-					</a>
-					<a href="#" class="point2">
-						<img src="img/r6.png" alt="">
-						<div class="ban__contant">
-							<p><em>Нова колекція одягу від українського бренду </em></p>
-							<h3 class="t_red">Balcony garment</h3>
-						</div>
-					</a>
+				{% if adv %}
+					{% for item in adv %}
+						{% set path = "public/adv/" ~ item %}
+						{% include path %}
+					{% endfor %}
+				{% endif %}
 				</div>
+			{% endblock advs %}
+
+			{% block product_list %}
 				<div class="catalog">
-					<a href="#" class="catalog__item">
-						<div class="catalog__img">
-							<img src="img/r1.png" alt="">
-						</div>
-						<h3>Городський рюкзак Derby</h3>
-						<p class="price">350 грн.</p>
+					{% for pr in products.items %}
+						<a href="{{ url_for('public.catalog', category_id=category.id, sub_id=pr.subcategory_id, product_id=pr.id) }}" class="catalog__item">
+							<div class="catalog__img">
+								<img src="{{ url_for('static', filename='img/r1.png') }}" alt="">
+							</div>
+							<h3>{{ pr.name }}</h3>
+							<p class="price">{{ pr.price }} грн.</p>
+						</a>
+					{% endfor %}
+					{% if products.has_next %}
+					{% set sub_id = sub.id if sub else none %}
+					<a href="{{ url_for('public.catalog', category_id=category.id, sub_id=sub_id, page='p'~products.next_num) }}" class="load">
+						<img src="{{ url_for('static', filename='img/load.png') }}" alt="">
+						<p>завантажити ще</p>
 					</a>
-					<a href="#" class="catalog__item">
-						<div class="catalog__img">
-							<img src="img/r1.png" alt="">
-						</div>
-						<h3>Городський рюкзак Derby</h3>
-						<p class="price">350 грн.</p>
-					</a>
-					<a href="#" class="catalog__item">
-						<div class="catalog__img">
-							<img src="img/r1.png" alt="">
-						</div>
-						<h3>Городський рюкзак Derby</h3>
-						<p class="price">350 грн.</p>
-					</a>
-					<a href="#" class="catalog__item">
-						<div class="catalog__img">
-							<img src="img/r1.png" alt="">
-						</div>
-						<h3>Городський рюкзак Derby</h3>
-						<p class="price">350 грн.</p>
-					</a>
-					<a href="#" class="catalog__item">
-						<div class="catalog__img">
-							<img src="img/r1.png" alt="">
-						</div>
-						<h3>Городський рюкзак Derby</h3>
-						<p class="price">350 грн.</p>
-					</a>
-					<a href="#" class="catalog__item">
-						<div class="catalog__img">
-							<img src="img/r1.png" alt="">
-						</div>
-						<h3>Городський рюкзак Derby</h3>
-						<p class="price">350 грн.</p>
-					</a>
-					<a href="#" class="catalog__item">
-						<div class="catalog__img">
-							<img src="img/r1.png" alt="">
-						</div>
-						<h3>Городський рюкзак Derby</h3>
-						<p class="price">350 грн.</p>
-					</a>
-					<a href="#" class="catalog__item">
-						<div class="catalog__img">
-							<img src="img/r1.png" alt="">
-						</div>
-						<h3>Городський рюкзак Derby</h3>
-						<p class="price">350 грн.</p>
-					</a>
-					<a href="#" class="catalog__item">
-						<div class="catalog__img">
-							<img src="img/r1.png" alt="">
-						</div>
-						<h3>Городський рюкзак Derby</h3>
-						<p class="price">350 грн.</p>
-					</a>
-					<a href="#" class="catalog__item">
-						<div class="catalog__img">
-							<img src="img/r1.png" alt="">
-						</div>
-						<h3>Городський рюкзак Derby</h3>
-						<p class="price">350 грн.</p>
-					</a>
-					<a href="#" class="catalog__item">
-						<div class="catalog__img">
-							<img src="img/r1.png" alt="">
-						</div>
-						<h3>Городський рюкзак Derby</h3>
-						<p class="price">350 грн.</p>
-					</a>
-					<a href="#" class="catalog__item">
-						<div class="catalog__img">
-							<img src="img/r1.png" alt="">
-						</div>
-						<h3>Городський рюкзак Derby</h3>
-						<p class="price">350 грн.</p>
-					</a>
-				<a href="#" class="load">
-					<img src="img/load.png" alt="">
-					<p>завантажити ще</p>
-				</a>
+					{% endif %}
 				</div>
+			{% endblock product_list %}
+
 			</div>
 		</div>
-	</div>
-</div>
-{% endblock %}
+{% endblock content %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+	<h2>{{ posts.title }}</h2>
+	<section>{{ posts.body|safe }}</section>
+	<p><small>{{ posts.date.strftime('%d-%m-%Y') }}</small></p>
+	<br>
+{% endblock %}

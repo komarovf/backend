@@ -13,19 +13,15 @@
 			</div>
 		</div>
 	</div>
-	{% endblock %}
+	{% endblock baner%}
+
 	<div class="main">
 		<div class="l_layout">
-			<a href="#" class="ban">
-				<div class="ban__img">
-					<img src="{{ url_for('static', filename='img/b1.png') }}" alt="">
-				</div>
-				<div class="ban__contant">
-					<p><em>Нова колекція одягу від українського бренду </em></p>
-					<h3 class="t_red">Balcony garment</h3>
-				</div>
-			</a>
-			<a href="#" class="ban answer">
+
+		{% block advs %}
+		{% if adv %}
+			{% include "public/adv/" ~ adv[0] %}
+			<a href="{{ url_for('public.about') }}" class="ban answer">
 				<img src="{{ url_for('static', filename='img/bay.png') }}" alt="">
 				<div class="ban__contant">
 					<h3>Де купити?</h3>
@@ -33,17 +29,8 @@
 					<p>На сайті ви заможете знайти адресу, де можна купити будь-який товар, що Вам сподобався</p>
 				</div>
 			</a>
-			<a href="#" class="ban ban__border">
-				<div class="ban__img t35">
-					<img src="{{ url_for('static', filename='img/r1.png') }}" alt="">
-				</div>
-				<div class="ban__contant">
-					<h3>візьми з собою все</h3>
-					<div class="line line__red_thin"></div>
-					<p>Молодіжні рюкзаки від бренду <span>Derby</span> </p>
-				</div>
-			</a>
-			<a href="#" class="ban answer">
+			{% include "public/adv/" ~ adv[1] %}
+			<a href="{{ url_for('public.about') }}" class="ban answer">
 				<img src="{{ url_for('static', filename='img/cost.png') }}" alt="">
 				<div class="ban__contant">
 					<h3>яка вартість?</h3>
@@ -51,16 +38,8 @@
 					<p>Непоступаючись якістю, українські товари мають дуже приємну вартість </p>
 				</div>
 			</a>
-			<a href="#" class="ban">
-				<div class="ban__img">
-					<img src="{{ url_for('static', filename='img/b2.png') }}" alt="">
-				</div>
-				<div class="ban__contant">
-					<p><em>Нова колекція ювелірних виробів від </em></p>
-					<h3 class="t_red">Talia Jewellery</h3>
-				</div>
-			</a>
-			<a href="#" class="ban answer">
+			{% include "public/adv/" ~ adv[2] %}
+			<a href="{{ url_for('public.about') }}" class="ban answer">
 				<img src="{{ url_for('static', filename='img/qua.png') }}" alt="">
 				<div class="ban__contant">
 					<h3>а як щодо якості?</h3>
@@ -68,73 +47,45 @@
 					<p>Українські товари нічим не поступаються у якості перед своїми закордонними аналогами.</p>
 				</div>
 			</a>
-			<a href="#" class="ban">
-				<div class="ban__img">
-					<img src="{{ url_for('static', filename='img/b3.png') }}" alt="">
-				</div>
-				<div class="ban__contant">
-					<p><em>Нові надходження взуття </em></p>
-					<h3 class="t_red">Balcony garment</h3>
-				</div>
-			</a>
-			<a href="#" class="ban ban__border">
-				<div class="ban__img t35">
-					<img src="{{ url_for('static', filename='img/b4-1.png') }}" alt="">
-				</div>
-				<div class="ban__contant">
-					<h3 >Красу не затьмарити</h3>
-					<div class="line line__red_thin"></div>
-					<p><em>Мінеральна пудра від бренду <span>MYRIAM</span></em></p>
-				</div>
-			</a>
-			<a href="#" class="ban ">
-				<div class="ban__img ">
-					<img src="{{ url_for('static', filename='img/b5.png') }}" alt="">
-				</div>
-				<div class="ban__contant">
-					<h3 class="t_red">Бабині кози</h3>
-					<p> <em>Натуральна молочна продукція </em> </p>
-				</div>
-			</a>
+			{% for item in adv[3:] %}
+				{% include "public/adv/" ~ item %}
+			{% endfor %}
+		{% endif %}
+		{% endblock advs %}
+
 		</div>
 	</div>
+
 	{% block news %}
 	<div class="section">
 		<div class="l_layout">
 			<h2 class="section__title">Новини</h2>
 			<div class="section__content">
+			{% for n in news %}
 				<div class="section__item">
-					<h3>Українські товари для європейських магазинів</h3>
-					<p>З сьогоднішнього дня набирає чинності рішення Ради Європейського Союзу про одностороннього скасування мита на українські товари. Ці преференції будуть діяти тимчасово, до 1 листопада.</p>
+					<h3>{{ n.title }}</h3>
+					<p>{{ n.body|safe }}</p>
 				</div>
-				<div class="section__item">
-					<h3>Українські товари для європейських магазинів</h3>
-					<p>З сьогоднішнього дня набирає чинності рішення Ради Європейського Союзу про одностороннього скасування мита на українські товари. Ці преференції будуть діяти тимчасово, до 1 листопада.</p>
-				</div>
-				<div class="section__item">
-					<h3>Українські товари для європейських магазинів</h3>
-					<p>З сьогоднішнього дня набирає чинності рішення Ради Європейського Союзу про одностороннього скасування мита на українські товари. Ці преференції будуть діяти тимчасово, до 1 листопада.</p>
-				</div>
-				<div class="section__item">
-					<h3>Українські товари для європейських магазинів</h3>
-					<p>З сьогоднішнього дня набирає чинності рішення Ради Європейського Союзу про одностороннього скасування мита на українські товари. Ці преференції будуть діяти тимчасово, до 1 листопада.</p>
-				</div>
-			</div>
+			{% endfor %}
 		</div>
 	</div>
-	{% endblock %}
+	{% endblock news %}
+
 	{% block subscribe %}
 	<div class="baner subscribe">
 		<h3>Оформити підписку на новини</h3>
 		<div class="line line__yellow"></div>
 		<p>Дізнавайтеся першими про нові товари українського виробника</p>
 		<div class="subscribe__form">
-			<input type="text" name=""  placeholder="Ваше ім'я">
-			<input type="text" name=""  placeholder="Email">
-			<button>Підписатися</button>
+			<form action="" method="post">
+			{{ form.hidden_tag() }}
+			{{ form.name(placeholder="Ваше ім'я") }}
+			{{ form.email(placeholder="Email") }}
+			<input type="submit" value="Підписатися">
 		</div>
 	</div>
-	{% endblock %}
+	{% endblock subscribe %}
+
 	{% block socio %}
 	<div class="socio">
 		<h2 class="section__title">ми в соцмережах</h2>
@@ -191,5 +142,5 @@
 			</div>
 		</div>
 	</div>
-	{% endblock %}
-{% endblock %}
+	{% endblock socio %}
+{% endblock content %}
