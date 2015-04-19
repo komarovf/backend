@@ -14,11 +14,11 @@
 
 ### Запуск проекта
 * Python 3 required
-* `git clone https://github.com/komarovf/beckend.git
-* `cd beckend
-* Create virtual env: `python venv -m flask
-* `flask/bin/pip install -r requirements.txt  (flask\Scripts\pip for Win)
-* `./db_create.py (flask\Scripts\python db_create.py for Win)
-* `./run.py (flask\Scripts\python run.py)
+* `git clone` https://github.com/komarovf/beckend.git
+* `cd beckend`
+* Create virtual env: `python venv -m flask`
+* `flask/bin/pip install -r requirements.txt  (flask\Scripts\pip for Win)`
+* `./db_create.py (flask\Scripts\python db_create.py for Win)`
+* `./run.py (flask\Scripts\python run.py)`
 * Go to 127.0.0.1:5000
 * Amin page: 127.0.0.1:5000/admin (login:pass - admin:admin)
