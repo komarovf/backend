@@ -119,12 +119,3 @@ class AboutView(BaseView):
         else:
             form.about.data = about
         return self.render('admin/about.html', form=form)
-
-
-adm = Admin(app, template_mode='bootstrap3', index_view=MyAdminIndexView(), base_template='admin/my_master.html')
-adm.add_view(CategoryView(db.session))
-adm.add_view(ManufacturerView(db.session))
-adm.add_view(ProductView(db.session))
-adm.add_view(BlogView(db.session))
-adm.add_view(NewsView(db.session))
-adm.add_view(AboutView(name='About page'))
