@@ -61,3 +61,7 @@ target/
 
 # Db migrations
 db_repository
+
+# Sublime
+*.sublime-project
+*.sublime-workspace

@@ -15,7 +15,7 @@ db.create_all()
 cat = ['Одяг', 'Взуття', 'Косметика', 'Засоби гігієни', 'Посуд', 'Алкогольні напої',
        'Їжа', 'Чемодани та сумки', 'Товари для дітей', 'Прикраси', 'Побутова хімія', 'Різне']
 for i, item in enumerate(cat):
-	db.session.add(Category(name=item, css_class=i+1))
+    db.session.add(Category(name=item, css_class=i+1))
 
 user = User()
 user.login = 'admin'

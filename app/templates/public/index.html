@@ -1,146 +1,146 @@
 {% extends "base.html" %}
 {% block content %}
-	{% block baner %}
-	<div class="baner">
-		<!-- <img src="img/pattern.png" alt=""> -->
-		<div class="baner__content">
-			<div class="baner__content_top">
-				<h2>Купуй Українське</h2>
-				<p><em>інтернет-каталог українських виробників</em></p>
-			</div>
-			<div class="baner__content_bottom">
-				<p>Наразі купувати українські продукти та речі не тільки вигідно, а є вже правилом гарного тону. Українські виробники виробляють майже все: від колготок до танків, від іграшок  до спортивного інвентарю. </p>
-			</div>
-		</div>
-	</div>
-	{% endblock baner%}
+    {% block baner %}
+    <div class="baner">
+        <!-- <img src="img/pattern.png" alt=""> -->
+        <div class="baner__content">
+            <div class="baner__content_top">
+                <h2>Купуй Українське</h2>
+                <p><em>інтернет-каталог українських виробників</em></p>
+            </div>
+            <div class="baner__content_bottom">
+                <p>Наразі купувати українські продукти та речі не тільки вигідно, а є вже правилом гарного тону. Українські виробники виробляють майже все: від колготок до танків, від іграшок  до спортивного інвентарю. </p>
+            </div>
+        </div>
+    </div>
+    {% endblock baner%}
 
-	<div class="main">
-		<div class="l_layout">
+    <div class="main">
+        <div class="l_layout">
 
-		{% block advs %}
-		{% if adv %}
-			{% include "public/adv/" ~ adv[0] %}
-			<a href="{{ url_for('public.about') }}" class="ban answer">
-				<img src="{{ url_for('static', filename='img/bay.png') }}" alt="">
-				<div class="ban__contant">
-					<h3>Де купити?</h3>
-					<div class="line line__red"></div>
-					<p>На сайті ви заможете знайти адресу, де можна купити будь-який товар, що Вам сподобався</p>
-				</div>
-			</a>
-			{% include "public/adv/" ~ adv[1] %}
-			<a href="{{ url_for('public.about') }}" class="ban answer">
-				<img src="{{ url_for('static', filename='img/cost.png') }}" alt="">
-				<div class="ban__contant">
-					<h3>яка вартість?</h3>
-					<div class="line line__blue"></div>
-					<p>Непоступаючись якістю, українські товари мають дуже приємну вартість </p>
-				</div>
-			</a>
-			{% include "public/adv/" ~ adv[2] %}
-			<a href="{{ url_for('public.about') }}" class="ban answer">
-				<img src="{{ url_for('static', filename='img/qua.png') }}" alt="">
-				<div class="ban__contant">
-					<h3>а як щодо якості?</h3>
-					<div class="line line__yellow"></div>
-					<p>Українські товари нічим не поступаються у якості перед своїми закордонними аналогами.</p>
-				</div>
-			</a>
-			{% for item in adv[3:] %}
-				{% include "public/adv/" ~ item %}
-			{% endfor %}
-		{% endif %}
-		{% endblock advs %}
+        {% block advs %}
+        {% if adv %}
+            {% include "public/adv/" ~ adv[0] %}
+            <a href="{{ url_for('public.about') }}" class="ban answer">
+                <img src="{{ url_for('static', filename='img/bay.png') }}" alt="">
+                <div class="ban__contant">
+                    <h3>Де купити?</h3>
+                    <div class="line line__red"></div>
+                    <p>На сайті ви заможете знайти адресу, де можна купити будь-який товар, що Вам сподобався</p>
+                </div>
+            </a>
+            {% include "public/adv/" ~ adv[1] %}
+            <a href="{{ url_for('public.about') }}" class="ban answer">
+                <img src="{{ url_for('static', filename='img/cost.png') }}" alt="">
+                <div class="ban__contant">
+                    <h3>яка вартість?</h3>
+                    <div class="line line__blue"></div>
+                    <p>Непоступаючись якістю, українські товари мають дуже приємну вартість </p>
+                </div>
+            </a>
+            {% include "public/adv/" ~ adv[2] %}
+            <a href="{{ url_for('public.about') }}" class="ban answer">
+                <img src="{{ url_for('static', filename='img/qua.png') }}" alt="">
+                <div class="ban__contant">
+                    <h3>а як щодо якості?</h3>
+                    <div class="line line__yellow"></div>
+                    <p>Українські товари нічим не поступаються у якості перед своїми закордонними аналогами.</p>
+                </div>
+            </a>
+            {% for item in adv[3:] %}
+                {% include "public/adv/" ~ item %}
+            {% endfor %}
+        {% endif %}
+        {% endblock advs %}
 
-		</div>
-	</div>
+        </div>
+    </div>
 
-	{% block news %}
-	<div class="section">
-		<div class="l_layout">
-			<h2 class="section__title">Новини</h2>
-			<div class="section__content">
-			{% for n in news %}
-				<div class="section__item">
-					<h3>{{ n.title }}</h3>
-					<p>{{ n.body|safe }}</p>
-				</div>
-			{% endfor %}
-		</div>
-	</div>
-	{% endblock news %}
+    {% block news %}
+    <div class="section">
+        <div class="l_layout">
+            <h2 class="section__title">Новини</h2>
+            <div class="section__content">
+            {% for n in news %}
+                <div class="section__item">
+                    <h3>{{ n.title }}</h3>
+                    <p>{{ n.body|safe }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock news %}
 
-	{% block subscribe %}
-	<div class="baner subscribe">
-		<h3>Оформити підписку на новини</h3>
-		<div class="line line__yellow"></div>
-		<p>Дізнавайтеся першими про нові товари українського виробника</p>
-		<div class="subscribe__form">
-			<form action="" method="post">
-			{{ form.hidden_tag() }}
-			{{ form.name(placeholder="Ваше ім'я") }}
-			{{ form.email(placeholder="Email") }}
-			<input type="submit" value="Підписатися">
-		</div>
-	</div>
-	{% endblock subscribe %}
+    {% block subscribe %}
+    <div class="baner subscribe">
+        <h3>Оформити підписку на новини</h3>
+        <div class="line line__yellow"></div>
+        <p>Дізнавайтеся першими про нові товари українського виробника</p>
+        <div class="subscribe__form">
+            <form action="" method="post">
+            {{ form.hidden_tag() }}
+            {{ form.name(placeholder="Ваше ім'я") }}
+            {{ form.email(placeholder="Email") }}
+            <input type="submit" value="Підписатися">
+        </div>
+    </div>
+    {% endblock subscribe %}
 
-	{% block socio %}
-	<div class="socio">
-		<h2 class="section__title">ми в соцмережах</h2>
-		<div class="socio__wrap">
-			<div class="l_layout">
-				<div class="socio__container">
-					<div class="socio__top">
-						<p>Facebook</p>
-						<a href="#">
-							<img src="{{ url_for('static', filename='img/socio_f.png') }}" alt="">
-						</a>
-						<span class="number">1k</span>
-					</div>
-					<div class="socio__bottom">
-						<p><a href="#">123</a> people like <a href="#">Made In Ukraine</a></p>
-					</div>
-				</div>
-				<div class="socio__container">
-					<div class="socio__top">
-						<p>Вконтакте</p>
-						<a href="#">
-							<img src="{{ url_for('static', filename='img/socio_vk.png') }}" alt="">
-						</a>
-						<span class="number">458</span>
-					</div>
-					<div class="socio__bottom">
-						<p>Підписано <a href="#">34 569</a> чоловік</p>
-					</div>
-				</div>
-				<div class="socio__container">
-					<div class="socio__top">
-						<p>Twitter</p>
-						<a href="#">
-							<img src="{{ url_for('static', filename='img/socio_tw.png') }}" alt="">
-						</a>
-						<span class="number">458</span>
-					</div>
-					<div class="socio__bottom">
-						<p><a href="#">34 745</a> follow us </p>
-					</div>
-				</div>
-				<div class="socio__container">
-					<div class="socio__top">
-						<p>instgram</p>
-						<a href="#">
-							<img src="{{ url_for('static', filename='img/socio_inst.png') }}" alt="">
-						</a>
-						<span class="number">458</span>
-					</div>
-					<div class="socio__bottom">
-						<p><a href="#">745</a> follow us </p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	{% endblock socio %}
+    {% block socio %}
+    <div class="socio">
+        <h2 class="section__title">ми в соцмережах</h2>
+        <div class="socio__wrap">
+            <div class="l_layout">
+                <div class="socio__container">
+                    <div class="socio__top">
+                        <p>Facebook</p>
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='img/socio_f.png') }}" alt="">
+                        </a>
+                        <span class="number">1k</span>
+                    </div>
+                    <div class="socio__bottom">
+                        <p><a href="#">123</a> people like <a href="#">Made In Ukraine</a></p>
+                    </div>
+                </div>
+                <div class="socio__container">
+                    <div class="socio__top">
+                        <p>Вконтакте</p>
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='img/socio_vk.png') }}" alt="">
+                        </a>
+                        <span class="number">458</span>
+                    </div>
+                    <div class="socio__bottom">
+                        <p>Підписано <a href="#">34 569</a> чоловік</p>
+                    </div>
+                </div>
+                <div class="socio__container">
+                    <div class="socio__top">
+                        <p>Twitter</p>
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='img/socio_tw.png') }}" alt="">
+                        </a>
+                        <span class="number">458</span>
+                    </div>
+                    <div class="socio__bottom">
+                        <p><a href="#">34 745</a> follow us </p>
+                    </div>
+                </div>
+                <div class="socio__container">
+                    <div class="socio__top">
+                        <p>instgram</p>
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='img/socio_inst.png') }}" alt="">
+                        </a>
+                        <span class="number">458</span>
+                    </div>
+                    <div class="socio__bottom">
+                        <p><a href="#">745</a> follow us </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock socio %}
 {% endblock content %}

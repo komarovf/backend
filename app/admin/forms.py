@@ -15,8 +15,8 @@ class CKTextAreaWidget(TextArea):
         else:
             kwargs.setdefault('class', 'ckeditor')
         return super(CKTextAreaWidget, self).__call__(field, **kwargs)
- 
- 
+
+
 class CKTextAreaField(TextAreaField):
     widget = CKTextAreaWidget()
 

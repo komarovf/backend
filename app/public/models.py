@@ -60,7 +60,7 @@ class Product(db.Model):
     subcategory_id = db.Column(db.Integer(), db.ForeignKey('sub_category.id', ondelete='CASCADE'), nullable=False)
     manufacturer_id = db.Column(db.Integer(), db.ForeignKey('manufacturer.id', ondelete='CASCADE'), nullable=False)
     properties = db.relationship('Properties', backref='product', lazy='dynamic')
-    
+
     def __init__(self):
         # Random number for product popularity :)
         self.popularity = (lambda: randint(1, 10))()

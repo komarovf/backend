@@ -1,92 +1,92 @@
 {% extends "base.html" %}
 {% block content %}
-	{% include "public/nav.html" %}
-		<div class="section">
-			<div class="l_col1">
-				
-			{% block submenu %}
-				<div class="nav">
-					<h2>{{ category.name }}</h2>
-					<ul>
-					{% for item in category.sub_categories %}
-						<li {% if sub.id == item.id %}class="is-active"{% endif %}>
-							<a href="{{ url_for('public.catalog', category_id=category.id, sub_id=item.id) }}">
-								{{ item.name }}
-							</a>
-						</li>
-					{% endfor %}
-					</ul>
-				</div>
-			{% endblock submenu %}
+    {% include "public/nav.html" %}
+        <div class="section">
+            <div class="l_col1">
+                
+            {% block submenu %}
+                <div class="nav">
+                    <h2>{{ category.name }}</h2>
+                    <ul>
+                    {% for item in category.sub_categories %}
+                        <li {% if sub.id == item.id %}class="is-active"{% endif %}>
+                            <a href="{{ url_for('public.catalog', category_id=category.id, sub_id=item.id) }}">
+                                {{ item.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endblock submenu %}
 
-			{% block filter %}
-				{% if manufacturers %}
-				<div class="filter">
-					<div class="poll__form">
-						<h3>Виробник</h3>
-						<input class="btn" type="submit" value="ЗКИНУТИ"><i class="close"></i>
-						{% for m in manufacturers %}
-						<div class="radio-wrap">
-							<label class="radio">
-								<input type="radio" name="filter">
-								<span>{{ m }}</span>
-							</label>
-						</div>
-						{% endfor %}
-					</div>
-				</div>
-				{% endif %}
-			{% endblock filter %}
+            {% block filter %}
+                {% if manufacturers %}
+                <div class="filter">
+                    <div class="poll__form">
+                        <h3>Виробник</h3>
+                        <input class="btn" type="submit" value="ЗКИНУТИ"><i class="close"></i>
+                        {% for m in manufacturers %}
+                        <div class="radio-wrap">
+                            <label class="radio">
+                                <input type="radio" name="filter">
+                                <span>{{ m }}</span>
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            {% endblock filter %}
 
-			</div>
-			<div class="l_col2">
+            </div>
+            <div class="l_col2">
 
-			{% block sorting %}
-				<div class="sort">
-					<div class="sort__all">
-						<p>Всього <a href="#">{{ count }}</a> товарів</p>
-					</div>
-					<div class="sort__cattegory">
-						<p>Сортувати за:</p>
-						<a href="#" class="sort__choose">
-							Популярныстю
-						</a>
-					</div>
-				</div>
-			{% endblock sorting %}
+            {% block sorting %}
+                <div class="sort">
+                    <div class="sort__all">
+                        <p>Всього <a href="#">{{ count }}</a> товарів</p>
+                    </div>
+                    <div class="sort__cattegory">
+                        <p>Сортувати за:</p>
+                        <a href="#" class="sort__choose">
+                            Популярныстю
+                        </a>
+                    </div>
+                </div>
+            {% endblock sorting %}
 
-			{% block advs %}
-				<div class="point">
-				{% if adv %}
-					{% for item in adv %}
-						{% set path = "public/adv/" ~ item %}
-						{% include path %}
-					{% endfor %}
-				{% endif %}
-				</div>
-			{% endblock advs %}
+            {% block advs %}
+                <div class="point">
+                {% if adv %}
+                    {% for item in adv %}
+                        {% set path = "public/adv/" ~ item %}
+                        {% include path %}
+                    {% endfor %}
+                {% endif %}
+                </div>
+            {% endblock advs %}
 
-			{% block product_list %}
-				<div class="catalog">
-					{% for pr in products.items %}
-						<a href="{{ url_for('public.catalog', category_id=category.id, sub_id=pr.subcategory_id, product_id=pr.id) }}" class="catalog__item">
-							<div class="catalog__img">
-								<img src="{{ url_for('static', filename='img/r1.png') }}" alt="">
-							</div>
-							<h3>{{ pr.name }}</h3>
-							<p class="price">{{ pr.price }} грн.</p>
-						</a>
-					{% endfor %}
-					{% if products.has_next %}
-					{% set sub_id = sub.id if sub else none %}
-					<a href="{{ url_for('public.catalog', category_id=category.id, sub_id=sub_id, page='p'~products.next_num) }}" class="load">
-						<img src="{{ url_for('static', filename='img/load.png') }}" alt="">
-						<p>завантажити ще</p>
-					</a>
-					{% endif %}
-				</div>
-			{% endblock product_list %}
+            {% block product_list %}
+                <div class="catalog">
+                    {% for pr in products.items %}
+                        <a href="{{ url_for('public.catalog', category_id=category.id, sub_id=pr.subcategory_id, product_id=pr.id) }}" class="catalog__item">
+                            <div class="catalog__img">
+                                <img src="{{ url_for('static', filename='img/r1.png') }}" alt="">
+                            </div>
+                            <h3>{{ pr.name }}</h3>
+                            <p class="price">{{ pr.price }} грн.</p>
+                        </a>
+                    {% endfor %}
+                    {% if products.has_next %}
+                    {% set sub_id = sub.id if sub else none %}
+                    <a href="{{ url_for('public.catalog', category_id=category.id, sub_id=sub_id, page='p'~products.next_num) }}" class="load">
+                        <img src="{{ url_for('static', filename='img/load.png') }}" alt="">
+                        <p>завантажити ще</p>
+                    </a>
+                    {% endif %}
+                </div>
+            {% endblock product_list %}
 
-			</div>
-		</div>
+            </div>
+        </div>
 {% endblock content %}

@@ -1,10 +1,7 @@
-from wtforms import TextAreaField
-from wtforms.widgets import TextArea
 from flask import redirect, url_for, request, flash
 from flask.ext.login import current_user, login_user, logout_user
 from flask.ext.admin import Admin, AdminIndexView, BaseView, helpers, expose
 from flask.ext.admin.contrib.sqla import ModelView
-from flask.ext.admin.form.upload import ImageUploadField
 
 from app import app, db, lm
 from config import ABOUT_PATH
@@ -71,57 +68,57 @@ class ManufacturerView(ModelView):
 
 
 class ProductView(ModelView):
-	form_overrides = dict(description=CKTextAreaField)
-	form_excluded_columns = ('popularity', 'date', 'img_folder')
-	column_list = ('name', 'price') 
-	inline_models = (Properties,)
+    form_overrides = dict(description=CKTextAreaField)
+    form_excluded_columns = ('popularity', 'date', 'img_folder')
+    column_list = ('name', 'price')
+    inline_models = (Properties,)
 
-	create_template = 'admin/edit.html'
-	edit_template = 'admin/edit.html'
-	
-	def is_accessible(self):
-		return current_user.is_authenticated()
+    create_template = 'admin/edit.html'
+    edit_template = 'admin/edit.html'
 
-	def __init__(self, session, **kwargs):
-		super(ProductView, self).__init__(Product, session, **kwargs)
+    def is_accessible(self):
+        return current_user.is_authenticated()
+
+    def __init__(self, session, **kwargs):
+        super(ProductView, self).__init__(Product, session, **kwargs)
 
 
 class BlogView(ModelView):
-	form_overrides = dict(body=CKTextAreaField)
-	form_excluded_columns = ('date',)
-	column_list = ('title',)
+    form_overrides = dict(body=CKTextAreaField)
+    form_excluded_columns = ('date',)
+    column_list = ('title',)
 
-	create_template = 'admin/edit.html'
-	edit_template = 'admin/edit.html'
+    create_template = 'admin/edit.html'
+    edit_template = 'admin/edit.html'
 
-	def is_accessible(self):
-		return current_user.is_authenticated()
+    def is_accessible(self):
+        return current_user.is_authenticated()
 
-	def __init__(self, session, **kwargs):
-		super(BlogView, self).__init__(BlogPosts, session, **kwargs)
+    def __init__(self, session, **kwargs):
+        super(BlogView, self).__init__(BlogPosts, session, **kwargs)
 
 
 class NewsView(BlogView):
-	def __init__(self, session, **kwargs):
-		super(BlogView, self).__init__(News, session, **kwargs)
+    def __init__(self, session, **kwargs):
+        super(BlogView, self).__init__(News, session, **kwargs)
 
 
 class AboutView(BaseView):
-	@expose('/', methods=['GET', 'POST'])
-	def index(self):
-		if not current_user.is_authenticated():
-			return redirect('/admin')
-		with open(ABOUT_PATH, 'r+') as f:
-			about = f.read()
-		form = AboutForm()
-		if helpers.validate_form_on_submit(form):
-			new = form.about.data
-			with open(ABOUT_PATH, 'w+') as f:
-				f.write(new)
-			flash('Success commit!')
-		else:
-			form.about.data = about
-		return self.render('admin/about.html', form=form)
+    @expose('/', methods=['GET', 'POST'])
+    def index(self):
+        if not current_user.is_authenticated():
+            return redirect('/admin')
+        with open(ABOUT_PATH, 'r+') as f:
+            about = f.read()
+        form = AboutForm()
+        if helpers.validate_form_on_submit(form):
+            new = form.about.data
+            with open(ABOUT_PATH, 'w+') as f:
+                f.write(new)
+            flash('Success commit!')
+        else:
+            form.about.data = about
+        return self.render('admin/about.html', form=form)
 
 
 adm = Admin(app, template_mode='bootstrap3', index_view=MyAdminIndexView(), base_template='admin/my_master.html')

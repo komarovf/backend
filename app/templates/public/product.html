@@ -1,78 +1,78 @@
 {% extends "base.html" %}
 {% block content %}
-	{% include "public/nav.html" %}
-	<div class="section">
-		<div class="big__wrap">
-			<div class="product">
-				<div class="catalog__img">
-					<img src="{{ url_for('static', filename='img/r1.png') }}" alt="">
-				</div>
-				<div class="product__wrap">
-					<a href="#" class="product__item is-active">
-						<img src="{{ url_for('static', filename='img/r1.png') }}" alt="">
-					</a>
-					<a href="#" class="product__item ">
-						<img src="{{ url_for('static', filename='img/r1.png') }}" alt="">
-					</a>
-					<a href="#" class="product__item ">
-						<img src="{{ url_for('static', filename='img/r1.png') }}" alt="">
-					</a>
-					<div class="clear"></div>
-				</div>
-			</div>
-			<div class="info">
-			{% block properties %}
-				<h2>{{ products.name }}</h2>
-				{% for prop in products.properties %}
-					{% set descr = " (" ~ prop.description ~ ")" if prop.description else "" %}
-					<p><span>{{ prop.name }}</span>{{ descr }}: {{ prop.value }}</p>
-				{% endfor %}
-				<div class="info__color">
-					<p>Колір:</p>
-					<div class="info__color_check color_1 is-active"></div>
-					<div class="info__color_check color_2"></div>
-					<div class="info__color_check color_3"></div>
-					<div class="info__color_check color_4"></div>
-				</div>
-			{% endblock properties %}
-				<p class="info__price">{{ products.price }} грн.</p>
-				<div class="socio__top">
-					<a href="http://facebook.com">
-						<img src="{{ url_for('static', filename='img/socio_f.png') }}" alt="">
-					</a>
-					<span class="number">1k</span>
-				</div>
-				<div class="socio__top">
-					<a href="http://vk.com">
-						<img src="{{ url_for('static', filename='img/socio_vk.png') }}" alt="">
-					</a>
-					<span class="number">458</span>
-				</div>
-				<div class="socio__top">
-					<a href="http://twitter.com">
-						<img src="{{ url_for('static', filename='img/socio_tw.png') }}" alt="">
-					</a>
-					<span class="number">458</span>
-				</div>
-			</div>
-			<div class="produce">
-				<h2>Виробник: </h2>
-				<img src="{{ url_for('static', filename='img/der.png') }}" alt="">
-				<div class="clear"></div>
-				<a href="{{ manufacturers.url }}" class="produce__site">{{ manufacturers.url }}</a>
-				<p class="produce__locate">{{ manufacturers.adress }}</p>
-				<p class="produce__tel">{{ manufacturers.phones }}</p>
-			</div>
-			<a href="#" class="map">
-				<img src="{{ url_for('static', filename='img/map.png') }}" alt="">
-			</a>
+    {% include "public/nav.html" %}
+    <div class="section">
+        <div class="big__wrap">
+            <div class="product">
+                <div class="catalog__img">
+                    <img src="{{ url_for('static', filename='img/r1.png') }}" alt="">
+                </div>
+                <div class="product__wrap">
+                    <a href="#" class="product__item is-active">
+                        <img src="{{ url_for('static', filename='img/r1.png') }}" alt="">
+                    </a>
+                    <a href="#" class="product__item ">
+                        <img src="{{ url_for('static', filename='img/r1.png') }}" alt="">
+                    </a>
+                    <a href="#" class="product__item ">
+                        <img src="{{ url_for('static', filename='img/r1.png') }}" alt="">
+                    </a>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="info">
+            {% block properties %}
+                <h2>{{ products.name }}</h2>
+                {% for prop in products.properties %}
+                    {% set descr = " (" ~ prop.description ~ ")" if prop.description else "" %}
+                    <p><span>{{ prop.name }}</span>{{ descr }}: {{ prop.value }}</p>
+                {% endfor %}
+                <div class="info__color">
+                    <p>Колір:</p>
+                    <div class="info__color_check color_1 is-active"></div>
+                    <div class="info__color_check color_2"></div>
+                    <div class="info__color_check color_3"></div>
+                    <div class="info__color_check color_4"></div>
+                </div>
+            {% endblock properties %}
+                <p class="info__price">{{ products.price }} грн.</p>
+                <div class="socio__top">
+                    <a href="http://facebook.com">
+                        <img src="{{ url_for('static', filename='img/socio_f.png') }}" alt="">
+                    </a>
+                    <span class="number">1k</span>
+                </div>
+                <div class="socio__top">
+                    <a href="http://vk.com">
+                        <img src="{{ url_for('static', filename='img/socio_vk.png') }}" alt="">
+                    </a>
+                    <span class="number">458</span>
+                </div>
+                <div class="socio__top">
+                    <a href="http://twitter.com">
+                        <img src="{{ url_for('static', filename='img/socio_tw.png') }}" alt="">
+                    </a>
+                    <span class="number">458</span>
+                </div>
+            </div>
+            <div class="produce">
+                <h2>Виробник: </h2>
+                <img src="{{ url_for('static', filename='img/der.png') }}" alt="">
+                <div class="clear"></div>
+                <a href="{{ manufacturers.url }}" class="produce__site">{{ manufacturers.url }}</a>
+                <p class="produce__locate">{{ manufacturers.adress }}</p>
+                <p class="produce__tel">{{ manufacturers.phones }}</p>
+            </div>
+            <a href="#" class="map">
+                <img src="{{ url_for('static', filename='img/map.png') }}" alt="">
+            </a>
 
-		</div>
-	</div>
-	<div class="inventory">
-			<h2>опис</h2>
-			<h3>{{ products.name }}</h3>
-			<p>{{ products.description|safe }}</p>
-			<a href="#">Читати ще</a>
-	</div>
+        </div>
+    </div>
+    <div class="inventory">
+            <h2>опис</h2>
+            <h3>{{ products.name }}</h3>
+            <p>{{ products.description|safe }}</p>
+            <a href="#">Читати ще</a>
+    </div>
 {% endblock %}
