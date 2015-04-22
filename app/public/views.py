@@ -2,15 +2,36 @@ from os import listdir
 from os.path import isfile, join
 from random import sample
 
-from flask import Blueprint, request, render_template, abort, url_for, redirect, flash
+from flask import Blueprint, request, render_template, abort, url_for, redirect, flash, g
 
 from app import app, db
-from config import PAGINATION, ADV_PATH, ABOUT_PATH
+from config import PAGINATION, ADV_PATH, ABOUT_PATH, MAX_SEARCH_RESULTS
 from app.public.models import Category, SubCategory, Product, Manufacturer, BlogPosts, News, Subscription
-from app.public.forms import SubscribeForm
+from app.public.forms import SubscribeForm, SearchForm
 
 
 mod = Blueprint('public', __name__, url_prefix='/public')
+
+
+@app.before_request
+def before_request():
+    g.search_form = SearchForm()
+
+
+@mod.route('/search', methods=['POST'])
+def search():
+    if not g.search_form.validate_on_submit():
+        return redirect(url_for('public.home'))
+    return redirect(url_for('public.search_results', query=g.search_form.search.data))
+
+
+@mod.route('/search_results/<query>')
+def search_results(query):
+    results = Product.query.whoosh_search(query, MAX_SEARCH_RESULTS).all()
+    return render_template('public/search_results.html',
+                           title='Результати пошуку',
+                           query=query,
+                           results=results)
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -33,7 +54,7 @@ def home():
         db.session.add(Subscription(name=name, mail=email))
         db.session.commit()
         flash('Ви успішно підписались на розсилку, {}!'.format(name))
-        return redirect(url_for('home'))
+        return redirect(url_for('public.home'))
 
     return render_template("public/index.html",
                            title='Купуй українське',

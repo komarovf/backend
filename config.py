@@ -19,3 +19,6 @@ DATABASE_CONNECT_OPTIONS = {}
 
 CSRF_ENABLED = True
 CSRF_SESSION_KEY = "somethingimpossibletoguess"
+
+WHOOSH_BASE = os.path.join(_basedir, 'search.db')
+MAX_SEARCH_RESULTS = 10

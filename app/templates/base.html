@@ -58,8 +58,11 @@
                     <li class="header__menu_item"><a href="{{ url_for('public.about') }}">про проект</a></li>
                 </ul>
                 <div class="header__search">
-                    <input type="text" name="" class="header__search-inp">
-                    <button></button>
+                <form id="search_form" action="{{ url_for('public.search') }}" method="post" name="search">
+                    {{ g.search_form.hidden_tag() }}
+                    {{ g.search_form.search(class_="header__search-inp") }}
+                    <button onclick="document.getElementById('search_form').submit();"></button>
+                </form>
                 </div>
             </div>
         </div>

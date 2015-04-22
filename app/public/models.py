@@ -4,7 +4,8 @@
 
 from random import randint
 from datetime import datetime
-from app import db
+import flask.ext.whooshalchemy as whooshalchemy
+from app import app, db
 
 
 class Category(db.Model):
@@ -48,6 +49,8 @@ class Manufacturer(db.Model):
 
 
 class Product(db.Model):
+    __searchable__ = ['description', 'name']
+
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text(), nullable=False)
@@ -102,3 +105,6 @@ class Subscription(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     mail = db.Column(db.String(50), nullable=False)
+
+
+whooshalchemy.whoosh_index(app, Product)

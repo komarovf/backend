@@ -1,6 +1,6 @@
 from flask import redirect, url_for, request, flash
 from flask.ext.login import current_user, login_user, logout_user
-from flask.ext.admin import Admin, AdminIndexView, BaseView, helpers, expose
+from flask.ext.admin import AdminIndexView, BaseView, helpers, expose
 from flask.ext.admin.contrib.sqla import ModelView
 
 from app import app, db, lm

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Результати пошуку для "{{ query }}":</h1>
+  {% for p in results %}
+      {{ p.name }}
+  {% endfor %}
+  <br>
+{% endblock %}
