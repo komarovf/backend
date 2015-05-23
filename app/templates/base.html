@@ -95,7 +95,7 @@
     <div class="copy">© Интернет-каталог українських виробників «Купуй українське» 2015</div>
 </div>
 {% endblock %}
-<script src="js/lib/head.js" data-headjs-load="js/init.js"></script>
+<script src="{{ url_for('static') filename='js/lib/head.js' }}" data-headjs-load="{{ url_for('static'), filename='js/init.js' }}"></script>
 <!-- Alert flash messages :) -->
     {% with messages = get_flashed_messages() %}
     {% if messages %}
