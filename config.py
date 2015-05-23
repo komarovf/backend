@@ -22,3 +22,8 @@ CSRF_SESSION_KEY = "somethingimpossibletoguess"
 
 WHOOSH_BASE = os.path.join(_basedir, 'search.db')
 MAX_SEARCH_RESULTS = 10
+
+LANGUAGES = {
+    'ru': 'Russian',
+    'ukr': 'Ukrainian'
+}
