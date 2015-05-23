@@ -115,13 +115,17 @@
         <h3>Оформити підписку на новини</h3>
         <div class="line line__yellow"></div>
         <p>Дізнавайтеся першими про нові товари українського виробника</p>
-        <div class="subscribe__form">
-            <form action="" method="post">
+        
+            <form action="" method="post" class="subscribe__form js-validate">
             {{ form.hidden_tag() }}
-            {{ form.name(placeholder="Ваше ім'я") }}
-            {{ form.email(placeholder="Email") }}
+            <div class="form__name">
+                {{ form.name(placeholder="Ваше ім'я") }}
+            </div>
+            <div class="form__mail">
+                {{ form.email(placeholder="Email") }}
+            </div>
             <input type="submit" value="Підписатися">
-        </div>
+        
     </div>
     {% endblock subscribe %}
 
