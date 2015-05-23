@@ -3,20 +3,15 @@ from os.path import isfile, join
 from random import sample
 
 from flask import Blueprint, request, render_template, abort, url_for, redirect, flash, g
-from flask.ext.babel import gettext
 
-from app import app, db, babel
-from config import PAGINATION, ADV_PATH, ABOUT_PATH, MAX_SEARCH_RESULTS, LANGUAGES
+from app import app, db
+from config import PAGINATION, ADV_PATH, ABOUT_PATH, MAX_SEARCH_RESULTS
 from app.public.models import Category, SubCategory, Product, Manufacturer, BlogPosts, News, Subscription
 from app.public.forms import SubscribeForm, SearchForm
 
 
 mod = Blueprint('public', __name__, url_prefix='/public')
 
-
-@babel.localeselector
-def get_locale():
-    return 'ukr'
 
 @app.before_request
 def before_request():
@@ -34,7 +29,7 @@ def search():
 def search_results(query):
     results = Product.query.whoosh_search(query, MAX_SEARCH_RESULTS).all()
     return render_template('public/search_results.html',
-                           title=gettext('Результати пошуку'),
+                           title='Результати пошуку',
                            query=query,
                            results=results)
 
@@ -58,11 +53,11 @@ def home():
         email = form.email.data
         db.session.add(Subscription(name=name, mail=email))
         db.session.commit()
-        flash(gettext('Ви успішно підписались на розсилку, %(name)s!', name=name))
+        flash('Ви успішно підписались на розсилку, {}!'.format(name))
         return redirect(url_for('public.home'))
 
     return render_template("public/index.html",
-                           title=gettext('Купуй українське'),
+                           title='Купуй українське',
                            adv=adv,
                            news=news,
                            form=form)
@@ -81,10 +76,10 @@ def post(id=None, page='p1', cat=''):
 
     if cat == 'news':
         model = News
-        title = gettext('Новини')
+        title = 'Новини'
     elif cat == 'blog':
         model = BlogPosts
-        title = gettext('Блог')
+        title = 'Блог'
     else:
         abort(404)
 
@@ -109,7 +104,7 @@ def about():
     with open(ABOUT_PATH, 'r+') as f:
         text = f.read()
     return render_template("public/about.html",
-                           title=gettext('Про нас'),
+                           title='Про нас',
                            text=text)
 
 
@@ -125,7 +120,7 @@ def catalog(category_id=1, sub_id=None, product_id=None, page='p1'):
     # need for navigation links
     nav = 1
 
-    title = gettext('Каталог')
+    title = 'Каталог'
     product_count = 0
     sub_cat = None
     manufacturers = None

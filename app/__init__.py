@@ -4,13 +4,11 @@ from flask import Flask, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
 from flask.ext.admin import Admin
-from flask.ext.babel import Babel
 
 
 app = Flask(__name__)
 app.config.from_object('config')
 
-babel = Babel(app)
 db = SQLAlchemy(app)
 lm = LoginManager()
 lm.init_app(app)
