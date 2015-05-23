@@ -10,7 +10,7 @@ from app.public.models import Category, SubCategory, Product, Manufacturer, Blog
 from app.public.forms import SubscribeForm, SearchForm
 
 
-mod = Blueprint('public', __name__, url_prefix='/public')
+mod = Blueprint('public', __name__, url_prefix='/')
 
 
 @app.before_request

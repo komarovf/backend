@@ -1,6 +1,6 @@
-head.load("js/lib/jquery.js",
-					"js/lib/cycle.js",
-					"js/lib/cycle.carousel.js",
-					"js/common.js",
-					"js/jquery.validate.js",
-					"js/picturefill.js");
+head.load("static/js/lib/jquery.js",
+					"static/js/lib/cycle.js",
+					"static/js/lib/cycle.carousel.js",
+					"static/js/common.js",
+					"static/js/jquery.validate.js",
+					"static/js/picturefill.js");
