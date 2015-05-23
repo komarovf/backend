@@ -136,5 +136,69 @@ $(this).parents(drop).find("input").val(id);
 };
 drop_list();
 });
+// ***** слайдер проворачивающий экземпляры сайтов ****
 console.log($('body').html());
 });
+$(document).ready(function(){
+$('.js-carousel').slick({
+slidesToShow: 1,
+slidesToScroll: 1,
+arrows: false,
+fade: true,
+asNavFor: '.js-carousel-preview',
+responsive: [
+{
+breakpoint: 758,
+settings: {
+slidesToShow: 1,
+slidesToScroll: 1,
+dots: true,
+fade: false,
+}
+}
+]
+});
+$('.js-carousel-preview').slick({
+slidesToShow: 4,
+slidesToScroll: 4,
+asNavFor: '.js-carousel',
+dots: false,
+arrows: true,
+infinite: true,
+centerMode: false,
+focusOnSelect: true,
+responsive: [
+{
+breakpoint: 980,
+settings: {
+slidesToShow: 6,
+slidesToScroll: 6
+}
+}
+]
+});
+$(".js-carousel-preview .slick-slide").on("click",function (){
+$(this).parent().find(".slick-slide").removeClass("is-active");
+$(this).addClass("is-active")
+return false;
+});
+});
+// ##### Карта start ######
+var myMap;
+// Дождёмся загрузки API и готовности DOM.
+ymaps.ready(init);
+function init () {
+// Создание экземпляра карты и его привязка к контейнеру с
+// заданным id ("map").
+myMap = new ymaps.Map('map', {
+// При инициализации карты обязательно нужно указать
+// её центр и коэффициент масштабирования.
+center: [55.746993, 37.608284], // Москва
+zoom: 17
+});
+// document.getElementById('destroyButton').onclick = function () {
+// // Для уничтожения используется метод destroy.
+// myMap.destroy();
+// };
+}
+// смотри js/yandexMapInit.js
