@@ -44,8 +44,8 @@ class MyAdminIndexView(AdminIndexView):
 
 
 class CategoryView(ModelView):
-    inline_models = [(SubCategory, dict(form_columns=['name']))]
-    form_excluded_columns = ('sub_categories')
+    inline_models = (SubCategory,)
+    form_excluded_columns = ('sub_categories',)
     column_list = ('name',)
 
     def is_accessible(self):
