@@ -3,15 +3,54 @@
     {% block baner %}
     <div class="baner">
         <!-- <img src="img/pattern.png" alt=""> -->
-        <div class="baner__content">
-            <div class="baner__content_top">
-                <h2>Купуй Українське</h2>
-                <p><em>інтернет-каталог українських виробників</em></p>
-            </div>
-            <div class="baner__content_bottom">
-                <p>Наразі купувати українські продукти та речі не тільки вигідно, а є вже правилом гарного тону. Українські виробники виробляють майже все: від колготок до танків, від іграшок  до спортивного інвентарю. </p>
-            </div>
-        </div>
+        <div class="l_layout">
+
+         <div class="slider">
+         <div class="cycle-slideshow"
+             data-cycle-fx="scrollHorz"
+             data-cycle-swipe="true"
+             data-cycle-timeout="0"
+             data-cycle-slides=".js-big-slider-item"
+             data-cycle-pager=".js-pager"
+             data-cycle-auto-height=container
+             data-cycle-pager-active-class="is-active"
+             data-cycle-pager-template="<button></button>"
+             data-cycle-prev=".js-slider-prev"
+             data-cycle-next=".js-slider-next">
+         <div class="baner__content js-big-slider-item">
+         <div class="baner__content_top">
+         <h2>Купуй Українське</h2>
+         <p><em>інтернет-каталог українських виробників</em></p>
+         </div>
+         <div class="baner__content_bottom">
+         <p>Наразі купувати українські продукти та речі не тільки вигідно, а є вже правилом гарного тону. Українські виробники виробляють майже все: від колготок до танків, від іграшок до спортивного інвентарю.Наразі купувати українські продукти та речі не тільки вигідно, а є вже правилом гарного тону. Українські виробники виробляють майже все: від колготок до танків, від іграшок до спортивного інвентарю. </p>
+         </div>
+         <div class="clear"></div>
+         </div>
+                  <div class="baner__content js-big-slider-item">
+         <div class="baner__content_top">
+         <h2>Купуй Українське</h2>
+         <p><em>інтернет-каталог українських виробників</em></p>
+         </div>
+         <div class="baner__content_bottom">
+         <p>Наразі купувати українські продукти та речі не тільки вигідно, а є вже правилом гарного тону. Українські виробники виробляють майже все: від колготок до танків, від іграшок до спортивного інвентарю. </p> <p>Наразі купувати українські продукти та речі не тільки вигідно, а є вже правилом гарного тону. Українські виробники виробляють майже все: від колготок до танків, від іграшок до спортивного інвентарю</p>
+         </div>
+         </div>
+                  <div class="baner__content js-big-slider-item">
+         <div class="baner__content_top">
+         <h2>Купуй Українське</h2>
+         <p><em>інтернет-каталог українських виробників</em></p>
+         </div>
+         <div class="baner__content_bottom">
+         <p>Наразі купувати українські продукти та речі не тільки вигідно, а є вже правилом гарного тону. Українські виробники виробляють майже все: від колготок до танків, від іграшок до спортивного інвентарю. </p>
+         </div>
+         </div>
+         </div>
+         <div class="js-slider-prev"></div>
+         <div class="js-slider-next"></div>
+         </div>
+         </div>
+         <div class="clear"></div>   
     </div>
     {% endblock baner%}
 
@@ -21,32 +60,32 @@
         {% block advs %}
         {% if adv %}
             {% include "public/adv/" ~ adv[0] %}
-            <a href="{{ url_for('public.about') }}" class="ban answer">
+            <div class="ban answer">
                 <img src="{{ url_for('static', filename='img/bay.png') }}" alt="">
                 <div class="ban__contant">
                     <h3>Де купити?</h3>
                     <div class="line line__red"></div>
                     <p>На сайті ви заможете знайти адресу, де можна купити будь-який товар, що Вам сподобався</p>
                 </div>
-            </a>
+            </div>
             {% include "public/adv/" ~ adv[1] %}
-            <a href="{{ url_for('public.about') }}" class="ban answer">
+            <div class="ban answer">
                 <img src="{{ url_for('static', filename='img/cost.png') }}" alt="">
                 <div class="ban__contant">
                     <h3>яка вартість?</h3>
                     <div class="line line__blue"></div>
                     <p>Непоступаючись якістю, українські товари мають дуже приємну вартість </p>
                 </div>
-            </a>
+            </div>
             {% include "public/adv/" ~ adv[2] %}
-            <a href="{{ url_for('public.about') }}" class="ban answer">
+            <div class="ban answer">
                 <img src="{{ url_for('static', filename='img/qua.png') }}" alt="">
                 <div class="ban__contant">
                     <h3>а як щодо якості?</h3>
                     <div class="line line__yellow"></div>
                     <p>Українські товари нічим не поступаються у якості перед своїми закордонними аналогами.</p>
                 </div>
-            </a>
+            </div>
             {% for item in adv[3:] %}
                 {% include "public/adv/" ~ item %}
             {% endfor %}
