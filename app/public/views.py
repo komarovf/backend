@@ -10,7 +10,7 @@ from app.public.models import Category, SubCategory, Product, Manufacturer, Blog
 from app.public.forms import SubscribeForm, SearchForm
 
 
-mod = Blueprint('public', __name__, url_prefix='/')
+mod = Blueprint('public', __name__)
 
 
 @app.before_request
@@ -27,14 +27,13 @@ def search():
 
 @mod.route('/search_results/<query>')
 def search_results(query):
-    results = Product.query.whoosh_search(query, MAX_SEARCH_RESULTS).all()
+    results = []#Product.query.whoosh_search(query, MAX_SEARCH_RESULTS).all()
     return render_template('public/search_results.html',
                            title='Результати пошуку',
                            query=query,
                            results=results)
 
 
-@app.route('/', methods=['GET', 'POST'])
 @mod.route('/', methods=['GET', 'POST'])
 def home():
     '''Index view'''

@@ -24,7 +24,7 @@
                 <div class="filter">
                     <div class="poll__form">
                         <h3>Виробник</h3>
-                        <input class="btn" type="submit" value="ЗКИНУТИ"><i class="close"></i>
+                        <input class="btn" id='hiden' type="submit" value="ЗКИНУТИ"><i class="close"></i>
                         {% for m in manufacturers %}
                         <div class="radio-wrap">
                             <label class="radio">
@@ -46,13 +46,18 @@
                     <div class="sort__all">
                         <p>Всього <a href="#">{{ count }}</a> товарів</p>
                     </div>
-                    <div class="sort__cattegory">
-                        <p>Сортувати за:</p>
-                        <a href="#" class="sort__choose">
-                            Популярныстю
-                        </a>
+                    <div class="cart-sort__item">
+                    <div class="drop-list js-drop">
+                    <button class="drop-list__btn"><span>популярністю</span></button>
+                    <input type="hidden" class="js-drop-list-input">
+                    <ul class="drop-list__main">
+                    <li data-id="1">популярністю</li>
+                    <li data-id="2">Ціною</li>
+                    </ul>
+                    </div>
                     </div>
                 </div>
+                    
             {% endblock sorting %}
 
             {% block advs %}
